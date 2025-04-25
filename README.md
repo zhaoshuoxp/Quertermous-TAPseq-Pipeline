@@ -1,7 +1,7 @@
 
 # TAP-seq + SCEPTRE Analysis Pipeline
 
-This repository contains a streamlined pipeline to perform TAP-seq alignment with **Cell Ranger**, generate filtered feature-barcode matrices, and perform **SCEPTRE** single-cell perturbation analysis.
+This repository contains a streamlined pipeline to perform TAP-seq alignment with [**Cell Ranger**](https://github.com/10XGenomics/cellranger), generate filtered feature-barcode matrices, and perform [**SCEPTRE**](https://katsevich-lab.github.io/sceptre/) single-cell perturbation analysis.
 
 ## 📁 Directory Structure
 
@@ -37,26 +37,28 @@ The R script will automatically install missing R packages if needed.
 
 | Filename | Description |
 | :--- | :--- |
-| `genelist.txt` | List of target genes for GTF filtering |
-| `guides.txt` | List of sgRNA guide sequences captured |
-| `lib.csv` | Cell Ranger libraries CSV file |
+| `genelist.txt` | List of target genes in TAPSeq panel |
+| `guides.txt` | List of sgRNA guide id/names in the library |
+| `lib.csv` | Cellranger libraries CSV file |
 | `grna_target.txt` | Mapping between sgRNA and target regions |
-| `feature_large.csv` | Feature reference for Cell Ranger |
-| `pos_controls.txt` | Positive control grna-target pairs for QC |
+| `feature_large.csv` | Feature reference with sgRNA sequneces and searching pattern for cellranger |
+| `pos_controls.txt` | Positive control grna-target pairs for power analysis |
 | `discovery_cis.txt` | Discovery grna-target pairs for analysis |
 
 ## 🚀 How to Run
 
 1. **Prepare all input files** and place them in the working directory.
 2. **Ensure** `run_pipeline.sh` and `sceptre.R` are executable:
+   
    ```bash
    chmod +x run_pipeline.sh sceptre.R
    ```
 3. **Run the full pipeline** with:
+   
    ```bash
    ./run_pipeline.sh <fastq_dir> <ref_path> <genelist.txt> <feature_large.csv> <lib.csv> <guides.txt> <covariate_file> <grna_target.txt> <pos_controls.txt> <discovery_cis.txt>
    ```
-
+   
    Example:
    ```bash
    ./run_pipeline.sh fastq/ /path/to/refdata/ genelist.txt feature_large.csv lib.csv guides.txt covariate.tsv grna_target.txt pos_controls.txt discovery_cis.txt
@@ -106,4 +108,4 @@ After successful execution:
 
 # 📬 Contact
 
-For questions or issues, please contact the pipeline maintainer.
+For questions or issues, please contact quanyiz@stanford.edu.
